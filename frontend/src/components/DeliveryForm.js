@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API from "../services/api";
+import "../styles/form.css";   // ✅ import CSS
 
 function DeliveryForm() {
   const [form, setForm] = useState({
@@ -17,13 +18,28 @@ function DeliveryForm() {
   };
 
   return (
-    <div>
+    <div className="page">
       <h2>Assign Delivery</h2>
 
-      <input placeholder="Order ID" onChange={e => setForm({...form, order_id: e.target.value})} />
-      <input placeholder="Delivery Person" onChange={e => setForm({...form, delivery_person: e.target.value})} />
+      <div className="form-row">
 
-      <button onClick={handleSubmit}>Submit</button>
+        <input
+          className="input"
+          placeholder="Order ID"
+          onChange={e => setForm({ ...form, order_id: e.target.value })}
+        />
+
+        <input
+          className="input"
+          placeholder="Delivery Person"
+          onChange={e => setForm({ ...form, delivery_person: e.target.value })}
+        />
+
+        <button className="btn" onClick={handleSubmit}>
+          Assign Delivery
+        </button>
+
+      </div>
     </div>
   );
 }

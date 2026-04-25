@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API from "../services/api";
+import "../styles/form.css";
 
 function OrderForm() {
   const [patientId, setPatientId] = useState("");
@@ -31,29 +32,51 @@ function OrderForm() {
   };
 
   return (
-    <div>
+    <div className="page">
       <h2>Create Order</h2>
 
-      <input
-        placeholder="Patient ID"
-        onChange={e => setPatientId(e.target.value)}
-      />
+      {/* Patient ID */}
+      <div className="form-group">
+        <input
+          className="input"
+          placeholder="Patient ID"
+          onChange={e => setPatientId(e.target.value)}
+        />
+      </div>
 
-      {items.map((item, index) => (
-        <div key={index}>
-          <input
-            placeholder="Medicine ID"
-            onChange={e => handleItemChange(index, "medicine_id", e.target.value)}
-          />
-          <input
-            placeholder="Quantity"
-            onChange={e => handleItemChange(index, "quantity", e.target.value)}
-          />
-        </div>
-      ))}
+      {/* Items */}
+      <div className="items-section">
+        {items.map((item, index) => (
+          <div className="item-row" key={index}>
+            <input
+              className="input"
+              placeholder="Medicine ID"
+              onChange={e =>
+                handleItemChange(index, "medicine_id", e.target.value)
+              }
+            />
 
-      <button onClick={addItem}>Add More</button>
-      <button onClick={handleSubmit}>Submit Order</button>
+            <input
+              className="input"
+              placeholder="Quantity"
+              onChange={e =>
+                handleItemChange(index, "quantity", e.target.value)
+              }
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Buttons */}
+      <div className="btn-group">
+        <button className="btn secondary" onClick={addItem}>
+          + Add Item
+        </button>
+
+        <button className="btn" onClick={handleSubmit}>
+          Submit Order
+        </button>
+      </div>
     </div>
   );
 }

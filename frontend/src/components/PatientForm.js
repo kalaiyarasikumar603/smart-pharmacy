@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API from "../services/api";
+import "../styles/form.css";   // ✅ import CSS
 
 function PatientForm() {
   const [form, setForm] = useState({
@@ -15,15 +16,40 @@ function PatientForm() {
   };
 
   return (
-    <div>
+    <div className="page">   {/* ✅ main container */}
       <h2>Add Patient</h2>
 
-      <input placeholder="Name" onChange={e => setForm({...form, name: e.target.value})} />
-      <input placeholder="Age" onChange={e => setForm({...form, age: e.target.value})} />
-      <input placeholder="Phone" onChange={e => setForm({...form, phone: e.target.value})} />
-      <input placeholder="Address" onChange={e => setForm({...form, address: e.target.value})} />
+      <div className="form-row">  {/* ✅ row layout */}
 
-      <button onClick={handleSubmit}>Submit</button>
+        <input
+          className="input"
+          placeholder="Name"
+          onChange={e => setForm({...form, name: e.target.value})}
+        />
+
+        <input
+          className="input"
+          placeholder="Age"
+          onChange={e => setForm({...form, age: e.target.value})}
+        />
+
+        <input
+          className="input"
+          placeholder="Phone"
+          onChange={e => setForm({...form, phone: e.target.value})}
+        />
+
+        <input
+          className="input"
+          placeholder="Address"
+          onChange={e => setForm({...form, address: e.target.value})}
+        />
+
+        <button className="btn" onClick={handleSubmit}>
+          Submit
+        </button>
+
+      </div>
     </div>
   );
 }
