@@ -24,6 +24,7 @@ def create_order(order: OrderCreate, db: Session = Depends(get_db)):
 
     new_order = Order(patient_id=order.patient_id, priority=priority)
 
+
     db.add(new_order)
     db.commit()
     db.refresh(new_order)
@@ -39,3 +40,16 @@ def create_order(order: OrderCreate, db: Session = Depends(get_db)):
     db.commit()
 
     return {"order_id": new_order.id, "priority": priority}
+@router.get("/orders")
+def get_orders(db: Session = Depends(get_db)):
+    orders = db.query(Order).all()
+
+    return [
+        {
+            "id": o.id,
+            "patient_id": o.patient_id,
+            "priority": o.priority,
+            "status": getattr(o, "status", "pending")  # safe fallback
+        }
+        for o in orders
+    ]

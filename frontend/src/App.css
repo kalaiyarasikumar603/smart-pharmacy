@@ -1,6 +1,17 @@
 .App {
   text-align: center;
 }
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #f5f6fa;
+}
+
+/* smooth UI */
+* {
+  box-sizing: border-box;
+  transition: 0.2s;
+}
 
 .App-logo {
   height: 40vmin;

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -7,8 +7,10 @@ function Sidebar() {
 
       <ul className="space-y-4">
         <li><Link to="/">Dashboard</Link></li>
+        
         <li><Link to="/patients">Patients</Link></li>
         <li><Link to="/orders">Orders</Link></li>
+        { name: "Admin", path: "/admin", icon: "⚙️" }
       </ul>
     </div>
   );

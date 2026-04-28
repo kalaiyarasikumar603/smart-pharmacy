@@ -9,14 +9,19 @@ function DeliveryForm() {
   });
 
   const handleSubmit = async () => {
-    await API.post("/deliveries", {
+  try {
+    const res = await API.post("/deliveries", {
       order_id: Number(form.order_id),
       delivery_person: form.delivery_person
     });
 
+    console.log("SUCCESS:", res.data);
     alert("Delivery Assigned");
-  };
-
+  } catch (err) {
+    console.error("REAL ERROR:", err.response?.data || err.message);
+    alert("Delivery not assigned");
+  }
+};
   return (
     <div className="page">
       <h2>Assign Delivery</h2>
